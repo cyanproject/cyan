@@ -1,3 +1,4 @@
+![logo](https://github.com/cyanproject/cyan/blob/58a38f5a04b562c8136d28cd4d1b114a08ee2377/logo-350x350.png)
 # Cyan
 Librería JavaScript para escribir fácilmente el frontend de aplicaciones web en ventanas, sin HTML ni CSS.
 
