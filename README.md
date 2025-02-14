@@ -1,17 +1,18 @@
 ![logo](https://github.com/cyanproject/cyan/blob/58a38f5a04b562c8136d28cd4d1b114a08ee2377/logo-350x350.png)
 # Cyan
-Librería JavaScript para escribir fácilmente el frontend de aplicaciones web en ventanas, sin HTML ni CSS.
+Librería JavaScript para crear ventanas movibles.
 
 ## Uso
 
-Descarga el archivo *cyan-v1.0.0.js* (o la versión que corresponda), que es la librería minificada para su uso, e incorpóralo a tu proyecto en la sección **`<head>`** del *index.html*, y escribe toda tu aplicación web con Cyan y JavaScript entre las etiquetas **`<script></script>`** en la sección **`<body>`**, o en archivos *.js* como componentes a importar dentro de ellas.
+Descarga el archivo *cyan-1.0.0.js* (o la versión que corresponda) y añádelo a tu proyecto en la sección **`<head>`** del *index.html*, y escribe funcionalidades en ventanas con Cyan y JavaScript entre etiquetas **`<script></script>`**. También puedes escribir el código de cada ventana o componente en archivos *.js* y luego importarlos dentro de esas etiquetas.
 
 Se recomienda que cada documento o componente se escriba en un archivo aparte, para lograr una estructura clara que ayude a la actualización del software, y permita su reutilización en otros proyectos. Los documentos son similares a las ventanas tradicionales: se pueden mover, organizar, cerrar u ocultar. También se pueden crear componentes sin asociarse a un documento, como por ejemplo, una barra de menús.
 
 **cyan.Begin()**
 
-Esta sentencia inicializa el escritorio de la aplicación web, mostrando por defecto la mesa 0 (mesa inicial de infinitas) y una barra de herramientas para gestionar los documentos.
-A partir de esta instrucción, se van escribiendo sentencias como *AddDocument* para crear un nuevo documento, *AddButton*, *AddLabel*, etc, para crear objetos de la interfaz de usuario dentro del documento, y se añade código en sus eventos que Cyan crea automáticamente como funciones nombradas con el mismo nombre de los objetos seguido del nombre del evento. Si escribes esta sentencia con el parámetro cyan.Begin(cyan.Const.DarkMode), la interfaz de usuario cambiará a modo oscuro.
+Esta sentencia inicializa Cyan, mostrando por defecto la mesa 0 y una barra de herramientas para gestionar los documentos. Las mesas son espacios donde puedes organizar grupos de ventanas, y no interfieren con el resto de tu aplicación web. A partir de esta instrucción, puedes escribir, por ejemplo, *AddDocument* para crear un nuevo documento, y luego, dentro de él, puedes escribir sentencias como *AddButton*, *AddLabel*, etc, para crear objetos de la interfaz de usuario.
+
+Si escribes esta sentencia con el parámetro cyan.Begin(cyan.Const.DarkMode), las ventanas cambiarán a modo oscuro.
 
 ### Características:
 
@@ -23,18 +24,18 @@ A partir de esta instrucción, se van escribiendo sentencias como *AddDocument* 
 
 - No se requiere crear funciones de eventos. Estos están listos para ser programados en funciones como: function NombreObjeto_OnNombreEvento() { tu código... }
 
-- Pueden escribirse componentes que no se referencian entre sí ni a sus objetos, para lograr componentes completamente reutilizables. Esto se puede conseguir porque cada objeto dispone de un método *Talk* a través del cual emitir mensajes, y un método *Listen* que escucha a los demás. Así, los componentes pueden comunicarse y reaccionar mediante mensajes que se envían a todos, sin importar sus nombres.
+- Pueden escribirse componentes que no se referencian entre sí ni a sus objetos, para lograr componentes completamente reutilizables. Esto se puede conseguir porque cada objeto dispone de un método *Talk* a través del cual emitir mensajes "al aire", y un método *Listen* que escucha a los demás. Así, los componentes pueden comunicarse y actuar a mensajes específicos que escuchen.
 
 - Se incluye validación de datos automática, como enteros, reales, rangos, alfanuméricos, etc.
 
-- El usuario dispone de un escritorio virtual mayor al tamaño del navegador con infinitas mesas de trabajo para organizar sus documentos como desee.
+- El usuario dispone de una barra de herramientas para organizar sus documentos como desee. Por ejemplo, puede reordenar las ventanas en la pantalla, o llevar grupos a mesas distintas para trabajar ordenado.
 
 
 ### ¡Hola mundo!
 
-El siguiente código crea un documento con el clásico saludo *¡Hola mundo!* Aunque pudo haberse escrito el código en el mismo archivo *index.html*, se prefirió escribir el documento en el archivo *DocHolaMundo.js* para ilustrar el uso de componentes, que se cargan con la sentencia **cyan.LoadComponent()** en el *index.html*. Notará el uso de algunas constantes de posición de Cyan, como por ejemplo, cyan.Col5, y de otras de tamaño, como por ejemplo, cyan.B4W. Estas y otras constantes las ofrece Cyan para facilitar el desarrollo y no tener que estar especificando números.
+El siguiente código crea un documento con el clásico saludo *¡Hola mundo!* Aunque pudo haberse escrito el código en el mismo archivo *index.html*, se prefirió escribir el documento en el archivo *DocHolaMundo.js* para ilustrar el uso de componentes, que se cargan con la sentencia **cyan.LoadComponent()**. Notará el uso de algunas constantes de posición de Cyan, como por ejemplo, cyan.Col5, y de otras de tamaño, como por ejemplo, cyan.B4W. Estas y otras constantes las ofrece Cyan para facilitar el desarrollo y no tener que estar especificando números.
 
-La función *ComponentDocHolaMundo_OnLoaded()* se ejecuta cuando el componente completa su carga, por eso se escribió dentro de ella que en ese momento se muestre el documento en pantalla (con la sentencia *Bring()*). También podría mostrarse en pantalla un documento al pulsar un botón, seleccionar una opción de un menú, etc.
+La función *ComponentDocHolaMundo_OnLoaded()* se ejecuta cuando el componente completa su carga, por eso se escribió ahí que en ese momento se muestre el documento en pantalla (con la sentencia *Bring()*). También podría mostrarse en pantalla un documento al pulsar un botón, seleccionar una opción de un menú, etc.
 
 ![holamundo](https://github.com/cyanproject/cyan/blob/118d8c168f723d3308ed4582691965b4db459c96/holamundo.jpg)
 
@@ -42,7 +43,7 @@ Archivo: index.html
 ```
 <!DOCTYPE html>
 <head>
-    <script type="text/javascript" src="./cyan-v1.0.0.js"></script>
+    <script type="text/javascript" src="./cyan-1.0.0.js"></script>
 </head>
 <body>
     <script>
@@ -122,7 +123,7 @@ Este proyecto es open source, y queda disponible a la comunidad tanto para su us
 
 **Para colaborar desarrollando:**
 
-Toma uno de los issues (puedes proponer nuevos) y crea una rama para desarrollarlo editando el archivo *cyan.ts*. Cuando termines, realiza un Pull Request. Ya luego subiremos una nueva versión tanto de *cyan.ts* como de la librería minificada para explotación.
+Toma uno de los issues (puedes proponer nuevos) y crea una rama para desarrollarlo editando el archivo *cyan-1.0.0.ts* (o la versión que corresponda). Cuando termines, realiza un Pull Request. Ya luego subiremos una nueva versión tanto del archivo .ts como de la librería minificada para su uso.
 
 Muchísimas gracias.
 
