@@ -37,7 +37,7 @@ El siguiente código crea un documento con el clásico saludo *¡Hola mundo!* Au
 
 La función *ComponentDocHolaMundo_OnLoaded()* se ejecuta cuando el componente completa su carga, por eso se escribió ahí que en ese momento se muestre el documento en pantalla (con la sentencia *Bring()*). También podría mostrarse en pantalla un documento al pulsar un botón, seleccionar una opción de un menú, etc.
 
-![holamundo](https://github.com/cyanproject/cyan/blob/118d8c168f723d3308ed4582691965b4db459c96/holamundo.jpg)
+![holamundo](https://github.com/cyanproject/cyan/blob/0a2f2590ef1b307687ab783733530ea033a7c5b2/hola-mundo.png)
 
 Archivo: index.html
 ```
@@ -46,6 +46,8 @@ Archivo: index.html
     <script type="text/javascript" src="./cyan-1.0.0.js"></script>
 </head>
 <body>
+    <h1>¡Hola mundo!</h1>
+
     <script>
         cyan.Begin()
         cyan.LoadComponent("DocHolaMundo.js")
